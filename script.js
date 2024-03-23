@@ -159,3 +159,6 @@ document.querySelectorAll(".sousmenu a").forEach(link => {
         updateMoviesByCategory(category);
     });
 });
+
+
+// bouton display none display films responsive
