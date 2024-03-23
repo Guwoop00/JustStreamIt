@@ -56,7 +56,7 @@ header .meilleurFilmInfos h2 {
 }
 
 /* Buttons */
-.details-btn {
+.details-btn, .see-more-btn {
     background-color: red;
     color: white;
     border: none;
@@ -113,10 +113,10 @@ header .meilleurFilmInfos h2 {
 
 .modal {
     text-align: center;
-    margin: 0 20%;
+    margin: auto;
     opacity: 0;
     font-size: smaller;
-    width: 95%;
+    width: 80%;
     height: auto;
     max-width: 1000px;
     min-width: 300px;
@@ -124,20 +124,27 @@ header .meilleurFilmInfos h2 {
     background: #fff;
     border-radius: 5px;
     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
+
+
 
 .close-modal {
     padding: 8px 10px;
     border: none;
     border-radius: 5px;
     font-size: 18px;
-    position: absolute;
-    top: 10px;
-    right: 10px;
+    position: fixed; /* Positionnement fixe pour rester en place lors du défilement */
+    top: 20px; /* Positionner le bouton de fermeture 20px en haut de l'écran */
+    left: 20px; /* Positionner le bouton de fermeture 20px à gauche de l'écran */
     cursor: pointer;
     background: #ff365e;
-    color: #fff
+    color: #fff;
+    z-index: 999; /* Assurez-vous que le bouton est au-dessus de la modal */
 }
+
 
 .modal h1 {
     margin-bottom: 10px;
@@ -164,6 +171,7 @@ header .meilleurFilmInfos h2 {
     opacity: 1;
     transition: opacity 0.4s 0.2s ease-out;
 }
+
 .movies .movie img:hover {
     transform: scale(1.1);
 }
@@ -225,6 +233,13 @@ header .meilleurFilmInfos h2 {
 }
 
 /* Responsive Design */
+
+@media screen and (min-width: 768px) {
+    .see-more-btn {
+        display: none
+    }
+}
+
 @media screen and (max-width: 768px) {
     nav {
         flex-direction: column;
@@ -235,8 +250,7 @@ header .meilleurFilmInfos h2 {
         display: none;
     }
 
-    .movie:nth-child(n+5),
-    .movies:not(.active) .movie:nth-child(n+5) {
+    .movies .movie:nth-child(n+5) {
         display: none;
     }
 
@@ -252,6 +266,9 @@ header .meilleurFilmInfos h2 {
 @media screen and (max-width: 480px) {
     .movie:nth-child(n+3) {
         display: none;
+    }
+    .movies.active .movie:nth-child(n+3) {
+        display: block;
     }
 
     .movies {

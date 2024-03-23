@@ -1,9 +1,9 @@
-// Définition constantes
+// Define constants
 const baseUrl = "http://localhost:8000/api/v1/titles/";
 const bestOfUrl = "http://localhost:8000/api/v1/titles/?sort_by=-imdb_score,-votes";
 const modalContainer = document.querySelector(".modal-container");
 
-// Fonction fetch data fenetre modale
+// Function to fetch data for modal window
 function fetchModalData(movieUrl) {
     return fetch(movieUrl)
         .then(response => response.json())
@@ -20,7 +20,7 @@ function fetchModalData(movieUrl) {
             document.getElementById('modal-country').innerHTML = data["countries"];
             document.getElementById('modal-desc').innerHTML = data["long_description"];
             
-            // N/A box offfice
+            // N/A box office
             let modalBoxOffice = document.getElementById('modal-box-office');
             if (data["worldwide_gross_income"] == null)
                 modalBoxOffice.innerHTML = "N/A";
@@ -29,21 +29,41 @@ function fetchModalData(movieUrl) {
         });
 }
 
-// Ajout de l'événement de clic aux éléments .modal-triggers
+// Add click event to .modal-triggers elements
 function modalToggleButtons() {
     const modalTriggers = document.querySelectorAll(".modal-trigger");
+    
     modalTriggers.forEach(trigger => {
         trigger.addEventListener("click", () => {
             getBestMovieDetails(baseUrl);
-            modalContainer.classList.toggle("active"); // Ajouter ou supprimer la classe active à la fenêtre modale
+            modalContainer.classList.toggle("active"); // Add or remove active class to modal window
         });
     });
 }
 modalToggleButtons();
 
-// Function to display movies in a category
+// Function to create a "See more" button at the end of each category
+function addSeeMoreButtonToCategory(category) {
+    const targetElement = document.getElementById(category);
+    const hiddenMovies = document.querySelectorAll('.movies');
+
+    const seeMoreButton = document.createElement("button");
+    seeMoreButton.textContent = "See more/less";
+    seeMoreButton.classList.add("see-more-btn");
+
+    seeMoreButton.addEventListener("click", function() {
+        hiddenMovies.forEach(movie => {
+            movie.classList.toggle("active");
+        }); 
+    });
+    targetElement.appendChild(seeMoreButton);
+}
+
+// Function to display movies
 function displayMovies(category, itemsDetails) {
+    
     let limitedItemsDetails;
+    
     if (category === "bestOf") {
         limitedItemsDetails = itemsDetails.slice(1, 7);
     } else {
@@ -51,18 +71,22 @@ function displayMovies(category, itemsDetails) {
     }
 
     let targetElement = document.getElementById(category);
-    
-    console.log(category)
-    console.log(targetElement)
-    
+
     limitedItemsDetails.forEach(item => {
         const imageUrl = item.image_url ? item.image_url : "img/JSI_logo.jpeg";
+        
         const movieElement = document.createElement("div");
         movieElement.classList.add("movie");
 
         const imgCover = document.createElement("img");
         imgCover.src = imageUrl;
         imgCover.alt = item.original_title;
+
+        // En cas d'erreur lors du chargement de l'image, utiliser l'image du logo
+        imgCover.onerror = function() {
+            this.onerror = null; // Éviter les boucles infinies en cas d'erreur répétée
+            this.src = "img/JSI_logo.jpeg";
+        };
 
         const title = document.createElement("p");
         title.textContent = item.original_title;
@@ -79,6 +103,7 @@ function displayMovies(category, itemsDetails) {
         movieElement.appendChild(title);
         targetElement.appendChild(movieElement);
     });
+addSeeMoreButtonToCategory(category)
 }
 
 // Function to fetch and display movies by category
@@ -91,11 +116,10 @@ function fetchAndDisplayMovies(category) {
             Promise.all(movieUrls.map(url => fetch(url)))
                 .then(responses => Promise.all(responses.map(res => res.json())))
                 .then(itemsDetails => displayMovies(category, itemsDetails))
-                .catch(error => console.error(`Erreur lors de la récupération des détails des films de la catégorie ${category}:`, error));
+                .catch(error => console.error(`Error fetching movie details for category ${category}:`, error));
         })
-        .catch(error => console.error(`Erreur lors de la récupération des films de la catégorie ${category}:`, error));
+        .catch(error => console.error(`Error fetching movies for category ${category}:`, error));
 }
-
 
 // Best movie box
 function getBestMovieDetails(baseUrl) {
@@ -117,9 +141,9 @@ function getBestMovieDetails(baseUrl) {
                     descriptionElement.textContent = movieDetails.description;
                     fetchModalData(bestMovieUrl);
                 })
-                .catch(error => console.error('Erreur lors de la récupération des détails du film:', error));
+                .catch(error => console.error('Error fetching movie details:', error));
         })
-        .catch(error => console.error('Erreur lors de la récupération du meilleur film:', error));
+        .catch(error => console.error('Error fetching best movie:', error));
 }
 
 // Fetching best movie details and displaying movies by category on window load
@@ -133,25 +157,21 @@ window.addEventListener('load', () => {
     });
 });
 
-// Fonction pour mettre à jour la liste de films en fonction de la catégorie sélectionnée
+// Function to update movie list based on selected category
 function updateMoviesByCategory(category) {
     const targetElement = document.getElementById("categoryChoice");
     const targetCat = document.getElementsByClassName("movies")[4];
 
-
     targetElement.textContent = category;
-
 
     targetCat.id = category;
 
-
     targetCat.innerHTML = "";
-
 
     fetchAndDisplayMovies(category);
 }
 
-// Ajout de l'événement de clic aux éléments du menu déroulant pour chaque catégorie
+// Add click event to dropdown menu items for each category
 document.querySelectorAll(".sousmenu a").forEach(link => {
     link.addEventListener("click", function(event) {
         event.preventDefault();
@@ -159,6 +179,3 @@ document.querySelectorAll(".sousmenu a").forEach(link => {
         updateMoviesByCategory(category);
     });
 });
-
-
-// bouton display none display films responsive
