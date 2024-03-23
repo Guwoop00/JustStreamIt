@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Just Stream It</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Coustard&family=Handlee&family=Syne+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+    <nav>
+        <img src="img/JSI_logo.jpeg" alt="Logo Just Stream It" height="60">
+        <h1>Vidéos à la demande</h1>
+    </nav> 
+    <section id="meilleurFilm">
+        <div class="meilleurFilmInfos">
+            <div class="left">
+                <img src="" alt="Meilleur film" id="bestmovieimg">
+            </div>
+            <div class="right">
+                <h2>Titre du film</h2>
+                <p>Description du film</p>
+                <button class="details-btn modal-trigger">Détails</button>
+            </div>
+        </div>
+    </section>
+</header>
+
+<section class="categories">
+    <h1>Meilleurs Films</h1>
+    <div class="movies" id="bestOf"></div>
+  
+    <h1>Sci-Fi</h1>
+    <div class="movies" id="sci-fi"></div>
+
+    <h1>Family</h1>
+    <div class="movies" id="family"></div>
+
+    <h1>Comedie</h1>
+    <div class="movies" id="comedy"></div>
+
+    <h1 id="categoryChoice">Choix d'une catégorie</h1>
+    <ul class="menuderoulant">
+        <li><a href="#">Catégorie</a>
+            <ul class="sousmenu">
+                <li><a href="#">Horror</a></li>
+                <li><a href="#">Mystery</a></li>
+                <li><a href="#">Drama</a></li>
+                <li><a href="#">Romance</a></li>
+                <li><a href="#">Crime</a></li>
+                <li><a href="#">Comedy</a></li>
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Thriller</a></li>
+                <li><a href="#">History</a></li>
+                <li><a href="#">Family</a></li>
+                <li><a href="#">War</a></li>
+                <li><a href="#">Music</a></li>
+                <li><a href="#">Musical</a></li>
+                <li><a href="#">Adventure</a></li>
+                <li><a href="#">Biography</a></li>
+                <li><a href="#">Animation</a></li>
+                <li><a href="#">Fantasy</a></li>
+                <li><a href="#">Sci-Fi</a></li>
+            </ul>
+        </li>
+    </ul>
+    <div class="movies" id="dynamic"></div>
+
+</section>
+
+<div class="modal-container">
+    <div class="overlay modal-trigger"></div>
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <button class="close-modal modal-trigger">X</button>
+            <div class="modal-cover-image">
+            </div>
+            <div class="modal-movie-info">
+                <header class="modal_header">
+                    <img alt="movie cover" id="modal-cover">
+                    <h3 class="title" id="modal-title">""</h3>
+                </header>
+                <div class="movie-details">
+                    
+                    <strong>Année de sortie: </strong>
+                    <p id="modal-year">""</p>
+                    
+                    <strong>Classification: </strong>
+                    <p id="modal-rating">""</p>
+                    
+                    <strong>Durée: </strong>
+                    <p id="modal-duration">""</p><br>
+                    
+                    <strong>Genre: </strong>
+                    <p id="modal-genres">""</p><br>
+                    
+                    <strong>Note IMDb: </strong>
+                    <p id="modal-imdb">""</p><br><br>
+
+                    <strong>Réalisateur: </strong>
+                    <p id="modal-directors">""</p><br>
+
+                    <strong>Acteurs: </strong>
+                    <p id="modal-cast">""</p><br>
+
+                    <strong>Pays: </strong>
+                    <p id="modal-country">""</p><br>
+
+                    <strong>Box office: </strong>
+                    <p id="modal-box-office">""</p><br><br>
+
+                    <strong>Description: </strong><br>
+                    <p class="plot" id="modal-desc">""</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</div>
+
+<script src="script.js" defer></script>
+</body>
+</html>

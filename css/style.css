@@ -1,0 +1,260 @@
+/* Reset CSS */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    font-style: bold;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navigation */
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 5px solid #6f6f6f;
+}
+
+nav img {
+    width: auto;
+}
+
+nav h1 {
+    margin: 0 auto;
+    padding: 10px 0;
+}
+
+/* Header */
+header {
+    background-color: blanchedalmond;
+    text-align: center;
+    padding: 10px 0;
+}
+
+header .meilleurFilmInfos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header .meilleurFilmInfos img {
+    max-width: 200px;
+    height: auto;
+    margin-right: 20px;
+}
+
+header .meilleurFilmInfos .right {
+    max-width: 600px;
+}
+
+header .meilleurFilmInfos h2 {
+    margin-bottom: 10px;
+}
+
+.meilleurFilmInfos{
+    padding: 40px;
+}
+
+/* Buttons */
+.details-btn {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Categories */
+.categories {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.categories h1 {
+    margin-bottom: 30px;
+}
+
+/* Movies */
+.movies {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: auto auto auto;
+    gap: 20px;
+}
+
+.movies .movie img {
+    width: 182px;
+    height: 268px;
+}
+
+.movies .movie p {
+    width: 182px;
+}
+
+/* Modal */
+.modal-container {
+    visibility: hidden;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    transition: visibility 0.4s;
+}
+
+.overlay {
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #333333d3;
+    transition: opacity 0.3s ease-out;
+}
+
+.modal {
+    text-align: center;
+    margin: 0 20%;
+    opacity: 0;
+    font-size: smaller;
+    width: 95%;
+    height: auto;
+    max-width: 1000px;
+    min-width: 300px;
+    padding: 30px;
+    background: #fff;
+    border-radius: 5px;
+    position: absolute;
+}
+
+.close-modal {
+    padding: 8px 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    background: #ff365e;
+    color: #fff
+}
+
+.modal h1 {
+    margin-bottom: 10px;
+}
+
+.movie-details{
+    margin-top: 20px;
+}
+
+.modal p {
+    line-height: normal;
+}
+
+.modal-container.active {
+    visibility: visible;
+}
+
+.modal-container.active .overlay {
+    opacity: 1;
+    transition: opacity 0.4s 0.2s ease-out;
+}
+
+.modal-container.active .modal {
+    opacity: 1;
+    transition: opacity 0.4s 0.2s ease-out;
+}
+.movies .movie img:hover {
+    transform: scale(1.1);
+}
+
+.menuderoulant {
+    height: 60px;
+    list-style: none;
+    padding: 10px;
+    margin: 40px;
+}
+
+.menuderoulant li {
+    float: left;
+    width: 200px;
+}
+
+.menuderoulant li a:link, .menuderoulant li a:visited {
+    display: block;
+    color: #FFFFFF;
+    background: #293245;
+    padding: 6px 10px;
+    border-right: 1px solid #FFFFFF;
+    text-align: center;
+    text-decoration: none;
+}
+
+.menuderoulant li a:hover {background-color: #199BD2;}
+.menuderoulant li a:active {background-color: #808080;}
+
+.menuderoulant .sousmenu {
+    list-style-type: none;
+    display: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+}
+
+.menuderoulant .sousmenu li {
+    float: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid transparent;
+    border-right: 1px solid transparent;
+}
+
+.menuderoulant .sousmenu li a:link, .menuderoulant li a:visited {
+    display: block;
+    color: #FFFFFF;
+    text-decoration: none;
+    background-color: #808080;
+}
+
+.menuderoulant .sousmenu li a:hover {
+    background-color: #199BD2;
+}
+
+.menuderoulant li:hover .sousmenu  {
+    display: block;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav h1 {
+        display: none;
+    }
+
+    .movie:nth-child(n+5),
+    .movies:not(.active) .movie:nth-child(n+5) {
+        display: none;
+    }
+
+    .movies.active .movie:nth-child(n+5) {
+        display: block;
+    }
+
+    .movies {
+        grid-template-columns: auto auto;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .movie:nth-child(n+3) {
+        display: none;
+    }
+
+    .movies {
+        grid-template-columns: auto;
+    }
+}
