@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Just Stream It</title>
@@ -10,58 +10,65 @@
 
 <header>
     <nav>
-        <img src="img/JSI_logo.jpeg" alt="Logo Just Stream It" height="60">
-        <h1>Vidéos à la demande</h1>
+        <img src="img/JSI_logo.jpeg" alt="Just Stream It Logo" height="60">
+        <h1>Video On Demand</h1>
     </nav> 
-    <section id="meilleurFilm">
-        <div class="meilleurFilmInfos">
+    <section id="bestMovie">
+        <div class="bestMovieInfo">
             <div class="left">
-                <img src="" alt="Meilleur film" id="bestmovieimg">
+                <img src="img/JSI_logo.jpeg" alt="Best Movie" id="bestmovieimg">
             </div>
             <div class="right">
-                <h2>Titre du film</h2>
-                <p>Description du film</p>
-                <button class="details-btn modal-trigger">Détails</button>
+                <h2>Title</h2>
+                <p>Description</p>
+                <button class="details-btn modal-trigger">Details</button>
             </div>
         </div>
     </section>
 </header>
 
 <section class="categories">
-    <h1>Meilleurs Films</h1>
+    <h1>Best Movies</h1>
     <div class="movies" id="bestOf"></div>
   
-    <h1>Sci-Fi</h1>
+    <h1>Science Fiction</h1>
     <div class="movies" id="sci-fi"></div>
 
     <h1>Family</h1>
     <div class="movies" id="family"></div>
 
-    <h1>Comedie</h1>
+    <h1>Comedy</h1>
     <div class="movies" id="comedy"></div>
 
-    <h1 id="categoryChoice">Choix d'une catégorie</h1>
-    <ul class="menuderoulant">
-        <li><a href="#">Catégorie</a>
-            <ul class="sousmenu">
-                <li><a href="#">Horror</a></li>
-                <li><a href="#">Mystery</a></li>
-                <li><a href="#">Drama</a></li>
-                <li><a href="#">Romance</a></li>
-                <li><a href="#">Crime</a></li>
-                <li><a href="#">Comedy</a></li>
+    <h1 id="categoryChoice">Choose a Category</h1>
+    <ul class="dropdown">
+        <li><a href="#">Category</a>
+            <ul class="submenu">
                 <li><a href="#">Action</a></li>
-                <li><a href="#">Thriller</a></li>
-                <li><a href="#">History</a></li>
+                <li><a href="#">Adult</a></li>
+                <li><a href="#">Adventure</a></li>
+                <li><a href="#">Animation</a></li>
+                <li><a href="#">Biography</a></li>
+                <li><a href="#">Comedy</a></li>
+                <li><a href="#">Crime</a></li>
+                <li><a href="#">Documentary</a></li>
+                <li><a href="#">Drama</a></li>
                 <li><a href="#">Family</a></li>
-                <li><a href="#">War</a></li>
+                <li><a href="#">Fantasy</a></li>
+                <li><a href="#">Film-Noir</a></li>
+                <li><a href="#">History</a></li>
+                <li><a href="#">Horror</a></li>
                 <li><a href="#">Music</a></li>
                 <li><a href="#">Musical</a></li>
-                <li><a href="#">Adventure</a></li>
-                <li><a href="#">Biography</a></li>
-                <li><a href="#">Animation</a></li>
-                <li><a href="#">Fantasy</a></li>
+                <li><a href="#">Mystery</a></li>
+                <li><a href="#">News</a></li>
+                <li><a href="#">Reality-TV</a></li>
+                <li><a href="#">Romance</a></li>
                 <li><a href="#">Sci-Fi</a></li>
+                <li><a href="#">Sport</a></li>
+                <li><a href="#">Thriller</a></li>
+                <li><a href="#">War</a></li>
+                <li><a href="#">Western</a></li>
             </ul>
         </li>
     </ul>
@@ -78,36 +85,36 @@
             </div>
             <div class="modal-movie-info">
                 <header class="modal_header">
-                    <img alt="movie cover" id="modal-cover">
-                    <h3 class="title" id="modal-title">""</h3>
+                    <img src="img/JSI_logo.jpeg" alt="movie cover" id="modal-cover">
+                    <h3 class="title" id="modal-title">Title</h3>
                 </header>
                 <div class="movie-details">
                     
-                    <strong>Année de sortie: </strong>
+                    <strong>Release Year: </strong>
                     <p id="modal-year">""</p>
                     
-                    <strong>Classification: </strong>
+                    <strong>Rating: </strong>
                     <p id="modal-rating">""</p>
                     
-                    <strong>Durée: </strong>
+                    <strong>Duration: </strong>
                     <p id="modal-duration">""</p><br>
                     
                     <strong>Genre: </strong>
                     <p id="modal-genres">""</p><br>
                     
-                    <strong>Note IMDb: </strong>
+                    <strong>IMDb Rating: </strong>
                     <p id="modal-imdb">""</p><br><br>
 
-                    <strong>Réalisateur: </strong>
+                    <strong>Directors: </strong>
                     <p id="modal-directors">""</p><br>
 
-                    <strong>Acteurs: </strong>
+                    <strong>Actors: </strong>
                     <p id="modal-cast">""</p><br>
 
-                    <strong>Pays: </strong>
+                    <strong>Country: </strong>
                     <p id="modal-country">""</p><br>
 
-                    <strong>Box office: </strong>
+                    <strong>Box Office: </strong>
                     <p id="modal-box-office">""</p><br><br>
 
                     <strong>Description: </strong><br>
@@ -116,9 +123,6 @@
             </div>
         </div>
     </div>
-</div>
-
-
 </div>
 
 <script src="script.js" defer></script>

@@ -4,7 +4,7 @@ const bestOfUrl = "http://localhost:8000/api/v1/titles/?sort_by=-imdb_score,-vot
 const modalContainer = document.querySelector(".modal-container");
 
 // Function to fetch data for modal window
-function fetchModalData(movieUrl) {
+async function fetchModalData(movieUrl) {
     return fetch(movieUrl)
         .then(response => response.json())
         .then(data => {
@@ -82,16 +82,14 @@ function displayMovies(category, itemsDetails) {
         imgCover.src = imageUrl;
         imgCover.alt = item.original_title;
 
-        // En cas d'erreur lors du chargement de l'image, utiliser l'image du logo
+        // In case of image loading error, use the logo image
         imgCover.onerror = function() {
-            this.onerror = null; // Éviter les boucles infinies en cas d'erreur répétée
+            this.onerror = null; // Avoid infinite loops
             this.src = "img/JSI_logo.jpeg";
         };
 
         const title = document.createElement("p");
         title.textContent = item.original_title;
-
-        const modalContainer = document.querySelector(".modal-container");
 
         imgCover.addEventListener('click', () => {
             let movieUrl = `${baseUrl}${item.id}`;
@@ -103,7 +101,7 @@ function displayMovies(category, itemsDetails) {
         movieElement.appendChild(title);
         targetElement.appendChild(movieElement);
     });
-addSeeMoreButtonToCategory(category)
+    addSeeMoreButtonToCategory(category)
 }
 
 // Function to fetch and display movies by category
@@ -147,7 +145,7 @@ function getBestMovieDetails(baseUrl) {
 }
 
 // Fetching best movie details and displaying movies by category on window load
-let categories = ["sci-fi", "family", "comedy", "bestOf"]
+let categories = ["sci-fi", "family", "comedy", "bestOf"];
 
 window.addEventListener('load', () => {
     getBestMovieDetails(baseUrl);
@@ -172,7 +170,7 @@ function updateMoviesByCategory(category) {
 }
 
 // Add click event to dropdown menu items for each category
-document.querySelectorAll(".sousmenu a").forEach(link => {
+document.querySelectorAll(".submenu a").forEach(link => {
     link.addEventListener("click", function(event) {
         event.preventDefault();
         const category = this.textContent;
