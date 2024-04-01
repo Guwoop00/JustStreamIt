@@ -169,11 +169,35 @@ function updateMoviesByCategory(category) {
     fetchAndDisplayMovies(category);
 }
 
-// Add click event to dropdown menu items for each category
-document.querySelectorAll(".submenu a").forEach(link => {
-    link.addEventListener("click", function(event) {
-        event.preventDefault();
-        const category = this.textContent;
-        updateMoviesByCategory(category);
-    });
-});
+
+const genresUrl = "http://localhost:8000/api/v1/genres/?page_size=30";
+
+// Fetch categories
+async function fetchAndPopulateGenres() {
+    try {
+        const response = await fetch(genresUrl);
+        const data = await response.json();
+
+        const submenu = document.querySelector('.submenu');
+
+        data.results.forEach(genre => {
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+            a.href = '#';
+            a.textContent = genre.name;
+            
+            // Add click event to dropdown menu items for each category
+            a.addEventListener('click', (event) => {
+                event.preventDefault();
+                updateMoviesByCategory(genre.name);
+            });
+            
+            li.appendChild(a);
+            submenu.appendChild(li);
+        });
+    } catch (error) {
+        console.error('Erreur lors de la récupération des catégories :', error);
+    }
+}
+
+window.addEventListener('load', fetchAndPopulateGenres);
