@@ -1,6 +1,7 @@
 // Define constants
 const baseUrl = "http://localhost:8000/api/v1/titles/";
 const bestOfUrl = "http://localhost:8000/api/v1/titles/?sort_by=-imdb_score,-votes";
+const genresUrl = "http://localhost:8000/api/v1/genres/?page_size=30";
 const modalContainer = document.querySelector(".modal-container");
 
 // Function to fetch data for modal window
@@ -168,9 +169,6 @@ function updateMoviesByCategory(category) {
 
     fetchAndDisplayMovies(category);
 }
-
-
-const genresUrl = "http://localhost:8000/api/v1/genres/?page_size=30";
 
 // Fetch categories
 async function fetchAndPopulateGenres() {
